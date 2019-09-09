@@ -1,0 +1,17 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: agri-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: agri
+    spec:
+      containers:
+      - name: agri
+        image: de.icr.io/namespace_mkb321/rckr_sh_verse_agric_010919
+        ports:
+        - name: agri
+          containerPort: 80

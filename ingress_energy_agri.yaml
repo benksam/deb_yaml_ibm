@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: energy-agri-ingress
+  annotations:
+    ingress.bluemix.net/rewrite-path: "serviceName=energy-service rewrite=/"
+    ingress.bluemix.net/rewrite-path: "serviceName=agri-service rewrite=/"
+    # ingress.bluemix.net/appid-auth: "bindSecret=mycluster-858204 namespace=default requestType=web serviceName=energy-service,agri-service"
+spec:
+   tls:
+   - hosts:
+     - mycluster-858204.eu-de.containers.appdomain.cloud # growsmarter-test.eu-de.containers.appdomain.cloud
+     secretName: mycluster-858204 # growsmarter-test
+   rules:
+   - host: mycluster-858204.eu-de.containers.appdomain.cloud # growsmarter-test.eu-de.containers.appdomain.cloud
+     http:
+       paths:
+       - path: /energy/*
+         backend:
+           serviceName: energy-service
+           servicePort: 3838
+       - path: /agri/*
+         backend:
+           serviceName: agri-service
+           servicePort: 3838

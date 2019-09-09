@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: agri-service
+  labels:
+    app: agri
+spec:
+  ports:
+  - port: 3838
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: agri

@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: energy-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: energy
+    spec:
+      containers:
+      - name: energy
+        image: de.icr.io/namespace_mkb321/rckr_sh_verse_energy_010919
+        ports:
+        - name: energy
+          containerPort: 80
+
